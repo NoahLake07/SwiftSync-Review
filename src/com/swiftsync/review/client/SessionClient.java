@@ -30,12 +30,14 @@ public class SessionClient extends BasicClient {
 
     public boolean enterSession(String sessionID) throws InvalidSessionID {
         println("Requesting to enter session " + sessionID + "...", ConsoleColors.YELLOW);
+
+        isWaiting = true;
+        awaitingTag = "enterSession";
         send("enterSession " + sessionID);
 
         // wait for a response tagged with "enterSession"
-        awaitingTag = "enterSession";
-        isWaiting = true;
-        while(isWaiting);
+        while(!requestedString.startsWith("enterSession"));
+        println("Received awaited response", ConsoleColors.YELLOW);
         String response = removeTag(requestedString);
 
          // if the response is "enterSession success", set currentSession and return true
@@ -79,8 +81,26 @@ public class SessionClient extends BasicClient {
         }
     }
 
+    /**
+     * Used for the host client to broadcast the message to change media to a certain file
+     * @param pathname
+     */
+    protected void broadcastChangeMediaTo(String pathname){
+        send("changeMedia " + pathname);
+    }
+
+    protected void receivedChangeMediaTo(String pathname){}
+
     @Override
     public void receivedMessage(String s){
+        System.out.println("Received: "+s);
+
+        if(s.startsWith("enterSession") && s.contains("success")){
+            requestedString = s;
+            isWaiting = false;
+            awaitingTag = "*";
+        }
+
         if(isWaiting && s.startsWith(awaitingTag)){
             requestedString = s;
             isWaiting = false;
@@ -103,8 +123,24 @@ public class SessionClient extends BasicClient {
         }
 
         if(s.startsWith("msg")){
-            println("[msg]  "+removeTag(s), ConsoleColors.PURPLE);
+            message(removeTag(s));
         }
+
+        if(s.startsWith("changeMedia")){
+            receivedChangeMediaTo(removeTag(s));
+        }
+
+        specialParse(s);
+    }
+
+    public void setMediaPlayerTo(String pathname){}
+
+    public void specialParse(String s){
+        // override this in client app
+    }
+
+    public void message(String s){
+        println("[msg]  "+removeTag(s), ConsoleColors.PURPLE);
     }
 
     public static String removeTag(String s){
