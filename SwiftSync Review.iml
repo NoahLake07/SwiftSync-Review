@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../ClientServerFramework/out/artifacts/ClientServerFramework_jar/ClientServerFramework.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Projects/SWIFTSYNC_SUITE/MediaPlayerController/out/artifacts/SwiftSync_Media_Player_jar/MediaPlayerController.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,7 +20,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../MediaPlayerController/out/artifacts/SwiftSync_Media_Player_jar/MediaPlayerController.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Projects/ClientServerFramework/out/artifacts/ClientServerFramework_jar/ClientServerFramework.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

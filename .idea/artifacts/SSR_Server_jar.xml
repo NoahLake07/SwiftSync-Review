@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="SSR Server:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/SSR_Server_jar</output-path>
-    <root id="archive" name="SwiftSync Review.jar">
-      <element id="module-output" name="SwiftSync Review" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../ClientServerFramework/out/artifacts/ClientServerFramework_jar/ClientServerFramework.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

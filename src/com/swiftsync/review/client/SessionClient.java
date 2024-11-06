@@ -22,6 +22,7 @@ public class SessionClient extends BasicClient {
 
     public SessionClient() {
         super(Constants.SERVER_ADDRESS, Constants.PORT);
+        System.out.println("Client connected to server at " + Constants.SERVER_ADDRESS + ":" + Constants.PORT);
         AdvancedOutput.setColor(ConsoleColors.RESET);
 
         cachedThreadPool = Executors.newCachedThreadPool();
